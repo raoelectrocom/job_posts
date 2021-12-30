@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="pst-hd">
+        <h1>{{object.title}}</h1>
+        {% if user == object.recruiter %}
+            <a href="{% url 'job_edit' object.id %}">
+            <span>>>Edit</span>
+            </a>
+            <a href="{% url 'job_delete' object.id %}">
+            <span>>>Delete</span>
+            </a>
+        {% endif %}
+        <p>Recruiter: {{object.recruiter.display_name}}</p>
+    </div>
+    {% if object.image %}
+        <div class='post-dt'>
+            <img src="{{object.image.url}}" />
+        </div>
+    {% endif %}
+    <div class='cnt-div'>
+        {{object.content|safe}}
+    </div>
+</div>
+
+{% endblock %}

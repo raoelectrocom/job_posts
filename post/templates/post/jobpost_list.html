@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for obj in object_list %}
+    <div class="post-cnt">
+        <div class="profile">
+            <div class="right-part">
+                <span><b>Recruiter</b>: {{obj.recruiter.display_name}}</span>
+                <span><b>Employer</b>: {{obj.recruiter.company_name}}</span>
+            </div>
+        </div>
+        <div class="post">
+            {% if obj.image %}
+                <a href="{% url 'job_detail' obj.id %}" target="_blank">
+                <img class="post-img" src="{{obj.image.url}}" alt="Post image">
+                </a>
+            {% endif %}
+            <div class="desc">
+                <p>{{obj.title}}</p>
+                {{obj.content|safe|truncatechars:30}}
+            </div>
+        </div>
+        <div class="post-cnt-desc">
+            <span class="detail-view">
+                <a href="{% url 'job_detail' obj.id %}" target="_blank">
+                    View >>>
+                </a>
+            </span>
+        </div>
+    </div>
+{% empty %}
+    <h1>Job posts display here</h1>
+{% endfor %}
+
+{% endblock %}

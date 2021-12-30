@@ -1,0 +1,5 @@
+Django==3.2.10
+ipython==7.30.1
+django-crispy-forms==1.13.0
+Pillow==8.4.0
+django-tinymce==3.4.0

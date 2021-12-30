@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}       
+
+{% load static thumbnail cropping preferences %}
+
+{% for obj in object_list %}
+    <div class="post-cnt">
+      <div class="post">
+        <a href="{% url 'interests:post_detail' obj.id %}" target="_blank">
+          <img class="post-img" src="{{obj.image.url}}" alt="Post image">
+        </a>
+        <div class="desc">{{obj.title}}</div>
+      </div>
+      <div class="post-cnt-desc">
+        <span class="detail-view">
+            <a href="{% url 'interests:post_detail' action.action_object.id %}" target="_blank">
+                View >>>
+            </a>
+        </span>
+      </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
