@@ -39,7 +39,14 @@ class JobPostCreate(CreateView):
     View class to create job post
     '''
     model = JobPost
-    fields = '__all__'
+    fields = ['title', 'content', 'image']
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save(commit=False)
+        self.object.recruiter = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class JobPostUpdate(UpdateView):
@@ -47,7 +54,14 @@ class JobPostUpdate(UpdateView):
     View class to update job post
     '''
     model = JobPost
-    fields = '__all__'
+    fields = ['title', 'content', 'image']
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save(commit=False)
+        self.object.recruiter = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class JobPostDeleteView(DeleteView):

@@ -55,4 +55,4 @@ class ProfileForm(forms.ModelForm):
         # whole form in template
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Register'))
+        self.helper.add_input(Submit('submit', 'Update'))
